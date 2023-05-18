@@ -16,6 +16,11 @@
 		FE6F63942A166C5000BF3034 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F63932A166C5000BF3034 /* CustomTextField.swift */; };
 		FE6F63972A16747400BF3034 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE6F63962A16747400BF3034 /* Storyboard.storyboard */; };
 		FE6F639A2A16786C00BF3034 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F63992A16786C00BF3034 /* UIColor+Extension.swift */; };
+		FE6F639C2A167E5900BF3034 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F639B2A167E5900BF3034 /* SignInViewModel.swift */; };
+		FE6F63A82A16844000BF3034 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = FE6F63A72A16844000BF3034 /* RxCocoa */; };
+		FE6F63AA2A16844000BF3034 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = FE6F63A92A16844000BF3034 /* RxRelay */; };
+		FE6F63AC2A16844000BF3034 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE6F63AB2A16844000BF3034 /* RxSwift */; };
+		FE6F63AE2A16852800BF3034 /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F63AD2A16852800BF3034 /* RxViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,8 @@
 		FE6F63932A166C5000BF3034 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		FE6F63962A16747400BF3034 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		FE6F63992A16786C00BF3034 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		FE6F639B2A167E5900BF3034 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		FE6F63AD2A16852800BF3034 /* RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +48,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE6F63AC2A16844000BF3034 /* RxSwift in Frameworks */,
+				FE6F63AA2A16844000BF3034 /* RxRelay in Frameworks */,
+				FE6F63A82A16844000BF3034 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF3B1572A1643A40011CAAB /* SignInViewController.swift */,
+				FE6F639B2A167E5900BF3034 /* SignInViewModel.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -208,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				FE6F63992A16786C00BF3034 /* UIColor+Extension.swift */,
+				FE6F63AD2A16852800BF3034 /* RxViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -228,6 +240,11 @@
 			dependencies = (
 			);
 			name = Chatting;
+			packageProductDependencies = (
+				FE6F63A72A16844000BF3034 /* RxCocoa */,
+				FE6F63A92A16844000BF3034 /* RxRelay */,
+				FE6F63AB2A16844000BF3034 /* RxSwift */,
+			);
 			productName = Chatting;
 			productReference = CEF3B1502A1643A40011CAAB /* Chatting.app */;
 			productType = "com.apple.product-type.application";
@@ -256,6 +273,9 @@
 				Base,
 			);
 			mainGroup = CEF3B1472A1643A40011CAAB;
+			packageReferences = (
+				FE6F63A62A16844000BF3034 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = CEF3B1512A1643A40011CAAB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -284,6 +304,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEF3B1582A1643A40011CAAB /* SignInViewController.swift in Sources */,
+				FE6F639C2A167E5900BF3034 /* SignInViewModel.swift in Sources */,
+				FE6F63AE2A16852800BF3034 /* RxViewController.swift in Sources */,
 				CEF3B1542A1643A40011CAAB /* AppDelegate.swift in Sources */,
 				CEF3B1722A1644980011CAAB /* Dummy.swift in Sources */,
 				FE6F639A2A16786C00BF3034 /* UIColor+Extension.swift in Sources */,
@@ -494,6 +516,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FE6F63A62A16844000BF3034 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FE6F63A72A16844000BF3034 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE6F63A62A16844000BF3034 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		FE6F63A92A16844000BF3034 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE6F63A62A16844000BF3034 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		FE6F63AB2A16844000BF3034 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE6F63A62A16844000BF3034 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEF3B1482A1643A40011CAAB /* Project object */;
 }

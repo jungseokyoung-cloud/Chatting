@@ -1,6 +1,10 @@
 import UIKit
+import RxCocoa
+import RxSwift
 
-class SignInViewController: UIViewController {
+final class SignInViewController: UIViewController {
+	private var disposBag = DisposeBag()
+	private var viewModel: SignInViewModelType
 	
 	private let stackView: UIStackView = {
 		let stackView = UIStackView()
@@ -12,7 +16,6 @@ class SignInViewController: UIViewController {
 		
 		return stackView
 	}()
-	
 	
 	private let userNameTextField: UITextField = {
 		let textField = CustomTextField(placeHolder: "아이디를 입력하세요.")
@@ -34,8 +37,8 @@ class SignInViewController: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.setTitle("로그인", for: .normal)
 		button.backgroundColor = UIColor(rgb: 0x5f84a2)
+		button.alpha = 0.3
 		button.layer.cornerRadius = 10.0
-		button.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
 		
 		return button
 	}()
@@ -56,7 +59,6 @@ class SignInViewController: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.setTitle("아이디 찾기", for: .normal)
 		button.titleLabel?.font = .systemFont(ofSize: 15)
-		button.addTarget(self, action: #selector(findIDButtonTapped), for: .touchUpInside)
 
 		return button
 	}()
@@ -66,7 +68,6 @@ class SignInViewController: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.setTitle("비밀번호 찾기", for: .normal)
 		button.titleLabel?.font = .systemFont(ofSize: 15)
-		button.addTarget(self, action: #selector(findPasswordButtonTapped), for: .touchUpInside)
 
 		return button
 	}()
@@ -76,16 +77,50 @@ class SignInViewController: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.setTitle("회원가입", for: .normal)
 		button.titleLabel?.font = .systemFont(ofSize: 15)
-		button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
 
 		return button
 	}()
 	
+	init(viewModel: SignInViewModelType = SignInViewModel()) {
+		self.viewModel = viewModel
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		self.viewModel = SignInViewModel()
+		super.init(coder: coder)
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		self.view.backgroundColor = UIColor(named: "SignInBackgroundColor")
+		bind()
 		setupUI()
+	}
+	
+	private func bind() {
+		userNameTextField.rx.text
+			.orEmpty
+			.bind(to: viewModel.input.userName)
+			.disposed(by: disposBag)
+		
+		passWordTextField.rx.text
+			.orEmpty
+			.bind(to: viewModel.input.password)
+			.disposed(by: disposBag)
+		
+		viewModel.output.isValid
+			.drive(confirmButton.rx.isEnabled)
+			.disposed(by: disposBag)
+		
+		viewModel.output.isValid
+			.map {$0 ? 1 : 0.3}
+			.drive(confirmButton.rx.alpha)
+			.disposed(by: disposBag)
+		
+		confirmButton.rx.tap
+			.bind(to: viewModel.input.confirmButtonTapped)
+			.disposed(by: disposBag)
 	}
 	
 	private func setupUI() {
@@ -112,23 +147,5 @@ class SignInViewController: UIViewController {
 			buttomStackView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
 			buttomStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
 		])
-	}
-}
-
-extension SignInViewController {
-	@objc func confirmButtonTapped() {
-		print("confirm")
-	}
-	
-	@objc func findIDButtonTapped() {
-		print("findID")
-	}
-	
-	@objc func findPasswordButtonTapped() {
-		print("findPassWord")
-	}
-		
-	@objc func registerButtonTapped() {
-		print("registerButton")
 	}
 }
