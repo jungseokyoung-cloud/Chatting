@@ -4,7 +4,7 @@ import RxCocoa
 import RxRelay
 
 public protocol SignInViewModelInput {
-	var userName: PublishRelay<String> { get }
+	var userEmail: PublishRelay<String> { get }
 	var password: PublishRelay<String> { get }
 	var confirmButtonTapped: PublishRelay<Void> { get set }
 	var findIdButtonTapped: PublishRelay<Void> { get set }
@@ -13,7 +13,9 @@ public protocol SignInViewModelInput {
 }
 
 public protocol SignInViewModelOutput {
-	var isValid: Driver<Bool> { get set }
+	var isValidUserEmail: Driver<Bool> { get set }
+	var isValidPassword: Driver<Bool> { get set }
+	var canTapConfirmButton: Driver<Bool> { get set }
 }
 
 public protocol SignInViewModelType {
@@ -34,26 +36,48 @@ final class SignInViewModel: SignInViewModelType,
 	var input: SignInViewModelInput { return self }
 	var output: SignInViewModelOutput { return self}
 	
-	var userName = PublishRelay<String>()
+	var userEmail = PublishRelay<String>()
 	var password = PublishRelay<String>()
 	var confirmButtonTapped = PublishRelay<Void>()
 	var findIdButtonTapped = PublishRelay<Void>()
 	var findPasswordButtonTapped = PublishRelay<Void>()
 	var registerButtonTapped = PublishRelay<Void>()
 	
-	var isValid: Driver<Bool>
+	var isValidUserEmail: Driver<Bool>
+	var isValidPassword: Driver<Bool>
+	var canTapConfirmButton: Driver<Bool>
 	
 	init() {
-		let isValid$ = Observable<Bool>
-			.combineLatest(userName, password) { (userName, password) in
-				if(userName != "" && password.count > 6) {
+		let isValidUserEmail$ = userEmail
+			.map { email in
+				if (email.contains("@") && email.contains(".")) {
 					return true
 				} else {
 					return false
 				}
 			}
 		
-		isValid = isValid$.asDriver(onErrorJustReturn: false)
+		let isValidPassword$ = password
+			.map { password in
+				if (password.count > 6) {
+					return true
+				} else {
+					return false
+				}
+			}
+		
+		let isValid$ = Observable<Bool>
+			.combineLatest(isValidUserEmail$, isValidPassword$) { (userEmailValidInfo, passwordValidInfo) in
+				if(userEmailValidInfo && passwordValidInfo) {
+					return true
+				} else {
+					return false
+				}
+			}
+		
+		canTapConfirmButton = isValid$.asDriver(onErrorJustReturn: false)
+		isValidUserEmail = isValidUserEmail$.asDriver(onErrorJustReturn: false)
+		isValidPassword = isValidPassword$.asDriver(onErrorJustReturn: false)
 		
 		confirmButtonTapped
 			.subscribe(
