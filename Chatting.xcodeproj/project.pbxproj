@@ -12,7 +12,7 @@
 		CEF3B1582A1643A40011CAAB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1572A1643A40011CAAB /* SignInViewController.swift */; };
 		CEF3B15D2A1643A50011CAAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF3B15C2A1643A50011CAAB /* Assets.xcassets */; };
 		CEF3B1602A1643A50011CAAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF3B15E2A1643A50011CAAB /* LaunchScreen.storyboard */; };
-		CEF3B1722A1644980011CAAB /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1712A1644980011CAAB /* Dummy.swift */; };
+		CEF3B1722A1644980011CAAB /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1712A1644980011CAAB /* UserRepository.swift */; };
 		FE6F63942A166C5000BF3034 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F63932A166C5000BF3034 /* CustomTextField.swift */; };
 		FE6F63972A16747400BF3034 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE6F63962A16747400BF3034 /* Storyboard.storyboard */; };
 		FE6F639A2A16786C00BF3034 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F63992A16786C00BF3034 /* UIColor+Extension.swift */; };
@@ -21,10 +21,17 @@
 		FE6F63AA2A16844000BF3034 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = FE6F63A92A16844000BF3034 /* RxRelay */; };
 		FE6F63AC2A16844000BF3034 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE6F63AB2A16844000BF3034 /* RxSwift */; };
 		FE6F63AE2A16852800BF3034 /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F63AD2A16852800BF3034 /* RxViewController.swift */; };
+		FE71E50E2A192D8F003BCFF1 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71E50D2A192D8F003BCFF1 /* UIViewController+Extension.swift */; };
 		FEA383BB2A175E4200205C44 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FEA383BA2A175E4200205C44 /* FirebaseAuth */; };
 		FEA383BD2A175E4200205C44 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = FEA383BC2A175E4200205C44 /* FirebaseDatabase */; };
 		FEA383BF2A175E4200205C44 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FEA383BE2A175E4200205C44 /* FirebaseMessaging */; };
 		FEA383C42A17656200205C44 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEA383C12A17618300205C44 /* GoogleService-Info.plist */; };
+		FEA383C72A17985400205C44 /* NetworkErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA383C62A17985400205C44 /* NetworkErrorType.swift */; };
+		FEA383CB2A179AD000205C44 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA383CA2A179AD000205C44 /* Dummy.swift */; };
+		FEBC2AD82A17DA3500265452 /* DummyFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC2AD72A17DA3500265452 /* DummyFile.swift */; };
+		FEBC2AD92A17DBBD00265452 /* UserRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1792A1644BE0011CAAB /* UserRepositoryImpl.swift */; };
+		FEBC2ADA2A17DBC600265452 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1732A16449A0011CAAB /* SignInUseCase.swift */; };
+		FEBC2ADB2A17DBC900265452 /* SignInUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1742A16449C0011CAAB /* SignInUseCaseImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,19 +41,23 @@
 		CEF3B1572A1643A40011CAAB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CEF3B15C2A1643A50011CAAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEF3B15F2A1643A50011CAAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CEF3B1712A1644980011CAAB /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
-		CEF3B1732A16449A0011CAAB /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
-		CEF3B1742A16449C0011CAAB /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
-		CEF3B1752A16449E0011CAAB /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		CEF3B1712A1644980011CAAB /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		CEF3B1732A16449A0011CAAB /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
+		CEF3B1742A16449C0011CAAB /* SignInUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCaseImpl.swift; sourceTree = "<group>"; };
 		CEF3B1782A1644BC0011CAAB /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
-		CEF3B1792A1644BE0011CAAB /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		CEF3B1792A1644BE0011CAAB /* UserRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryImpl.swift; sourceTree = "<group>"; };
 		FE6F63932A166C5000BF3034 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		FE6F63962A16747400BF3034 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		FE6F63992A16786C00BF3034 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		FE6F639B2A167E5900BF3034 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		FE6F63AD2A16852800BF3034 /* RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
+		FE71E50D2A192D8F003BCFF1 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		FEA383C02A17618300205C44 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEA383C12A17618300205C44 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FEA383C62A17985400205C44 /* NetworkErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorType.swift; sourceTree = "<group>"; };
+		FEA383CA2A179AD000205C44 /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		FEA383CC2A179AD600205C44 /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		FEBC2AD72A17DA3500265452 /* DummyFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyFile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +130,8 @@
 		CEF3B1692A1644530011CAAB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FEA383C92A179ACB00205C44 /* SignUp */,
+				FEA383C82A179ABE00205C44 /* FriendList */,
 				FE6F638F2A166B8700BF3034 /* SignIn */,
 			);
 			path = Presentation;
@@ -146,7 +159,7 @@
 		CEF3B16C2A1644790011CAAB /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				CEF3B1752A16449E0011CAAB /* Dummy.swift */,
+				FEBC2AD72A17DA3500265452 /* DummyFile.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -154,7 +167,7 @@
 		CEF3B16D2A16447E0011CAAB /* UseCasesImpl */ = {
 			isa = PBXGroup;
 			children = (
-				CEF3B1742A16449C0011CAAB /* Dummy.swift */,
+				CEF3B1742A16449C0011CAAB /* SignInUseCaseImpl.swift */,
 			);
 			path = UseCasesImpl;
 			sourceTree = "<group>";
@@ -171,7 +184,7 @@
 		CEF3B16F2A16448B0011CAAB /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				CEF3B1732A16449A0011CAAB /* Dummy.swift */,
+				CEF3B1732A16449A0011CAAB /* SignInUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -179,7 +192,7 @@
 		CEF3B1702A1644900011CAAB /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				CEF3B1712A1644980011CAAB /* Dummy.swift */,
+				CEF3B1712A1644980011CAAB /* UserRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -187,7 +200,7 @@
 		CEF3B1762A1644A30011CAAB /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				CEF3B1792A1644BE0011CAAB /* Dummy.swift */,
+				CEF3B1792A1644BE0011CAAB /* UserRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -212,6 +225,7 @@
 		FE6F63912A166C2600BF3034 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FEA383C52A17984100205C44 /* Utils */,
 				FE6F63982A16786300BF3034 /* Extensions */,
 				FE6F63922A166C4200BF3034 /* Customs */,
 			);
@@ -231,8 +245,33 @@
 			children = (
 				FE6F63992A16786C00BF3034 /* UIColor+Extension.swift */,
 				FE6F63AD2A16852800BF3034 /* RxViewController.swift */,
+				FE71E50D2A192D8F003BCFF1 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FEA383C52A17984100205C44 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FEA383C62A17985400205C44 /* NetworkErrorType.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		FEA383C82A179ABE00205C44 /* FriendList */ = {
+			isa = PBXGroup;
+			children = (
+				FEA383CA2A179AD000205C44 /* Dummy.swift */,
+			);
+			path = FriendList;
+			sourceTree = "<group>";
+		};
+		FEA383C92A179ACB00205C44 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				FEA383CC2A179AD600205C44 /* Dummy.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,13 +358,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEBC2ADA2A17DBC600265452 /* SignInUseCase.swift in Sources */,
+				FEBC2AD92A17DBBD00265452 /* UserRepositoryImpl.swift in Sources */,
 				CEF3B1582A1643A40011CAAB /* SignInViewController.swift in Sources */,
+				FE71E50E2A192D8F003BCFF1 /* UIViewController+Extension.swift in Sources */,
 				FE6F639C2A167E5900BF3034 /* SignInViewModel.swift in Sources */,
+				FEA383CB2A179AD000205C44 /* Dummy.swift in Sources */,
+				FEBC2ADB2A17DBC900265452 /* SignInUseCaseImpl.swift in Sources */,
 				FE6F63AE2A16852800BF3034 /* RxViewController.swift in Sources */,
 				CEF3B1542A1643A40011CAAB /* AppDelegate.swift in Sources */,
-				CEF3B1722A1644980011CAAB /* Dummy.swift in Sources */,
+				CEF3B1722A1644980011CAAB /* UserRepository.swift in Sources */,
 				FE6F639A2A16786C00BF3034 /* UIColor+Extension.swift in Sources */,
+				FEA383C72A17985400205C44 /* NetworkErrorType.swift in Sources */,
 				CEF3B1562A1643A40011CAAB /* SceneDelegate.swift in Sources */,
+				FEBC2AD82A17DA3500265452 /* DummyFile.swift in Sources */,
 				FE6F63942A166C5000BF3034 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -32,11 +32,12 @@ final class SignInViewController: UIViewController {
 		return textField
 	}()
 	
-	private lazy var confirmButton: UIButton = {
+	private let confirmButton: UIButton = {
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.setTitle("로그인", for: .normal)
 		button.backgroundColor = UIColor(rgb: 0x5f84a2)
+		button.isEnabled = false
 		button.alpha = 0.3
 		button.layer.cornerRadius = 10.0
 		
@@ -53,13 +54,13 @@ final class SignInViewController: UIViewController {
 		
 		return stackView
 	}()
-		
+	
 	private lazy var findPasswordButton = {
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.setTitle("비밀번호 찾기", for: .normal)
 		button.titleLabel?.font = .systemFont(ofSize: 15)
-
+		
 		return button
 	}()
 	
@@ -68,7 +69,7 @@ final class SignInViewController: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.setTitle("회원가입", for: .normal)
 		button.titleLabel?.font = .systemFont(ofSize: 15)
-
+		
 		return button
 	}()
 	
@@ -100,8 +101,8 @@ final class SignInViewController: UIViewController {
 			.bind(to: viewModel.input.password)
 			.disposed(by: disposBag)
 		
-		viewModel.output.canTapConfirmButton
-			.drive(confirmButton.rx.isEnabled)
+		confirmButton.rx.tap
+			.bind(to: viewModel.input.confirmButtonTapped)
 			.disposed(by: disposBag)
 		
 		viewModel.output.isValidUserEmail
@@ -121,7 +122,6 @@ final class SignInViewController: UIViewController {
 			.drive(
 				onNext: { [weak self] result in
 					guard let strongSelf = self else { return }
-					print(result)
 					if(result) {
 						strongSelf.passWordTextField.changeUIWithTextFieldMode(.normal)
 					} else {
@@ -132,12 +132,23 @@ final class SignInViewController: UIViewController {
 			.disposed(by: disposBag)
 		
 		viewModel.output.canTapConfirmButton
+			.drive(confirmButton.rx.isEnabled)
+			.disposed(by: disposBag)
+		
+		viewModel.output.canTapConfirmButton
 			.map {$0 ? 1 : 0.3}
 			.drive(confirmButton.rx.alpha)
 			.disposed(by: disposBag)
 		
-		confirmButton.rx.tap
-			.bind(to: viewModel.input.confirmButtonTapped)
+		viewModel.output.signInDenied
+			.drive(
+				onNext: { [weak self] _ in
+					self?.createAlertController(
+						title: "로그인 에러",
+						message: "유저 아이디 혹은 비밀번호가 잘못 입력되었습니다.",
+						buttonTitle: "확인")
+				}
+			)
 			.disposed(by: disposBag)
 	}
 	
