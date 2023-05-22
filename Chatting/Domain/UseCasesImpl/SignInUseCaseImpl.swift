@@ -1,17 +1,17 @@
 import RxSwift
 
 final class SignInUseCase: SignInUseCaseType {
-	private let repository: UserRepositoryType
+	private let dependency: SignInRepositoryType
 	
-	init(repository: UserRepositoryType = UserRepository()) {
-		self.repository = repository
+	init(dependency: SignInRepositoryType = SignInRepository()) {
+		self.dependency = dependency
 	}
 	
 	func trySignInUser(
 		userEmail: String,
 		password: String
 	) async -> Single<Void> {
-		return await repository.trySignInUser(
+		return await dependency.trySignInUser(
 			userEmail: userEmail,
 			password: password
 		)

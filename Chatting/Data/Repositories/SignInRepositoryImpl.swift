@@ -1,7 +1,7 @@
 import RxSwift
 import Firebase
 
-final class UserRepository: UserRepositoryType {
+final class SignInRepository: SignInRepositoryType {
 	func trySignInUser(
 		userEmail: String,
 		password: String

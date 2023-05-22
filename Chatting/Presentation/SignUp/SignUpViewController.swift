@@ -3,8 +3,8 @@ import RxCocoa
 import RxSwift
 
 final class SignUpViewController: UIViewController {
-	private let viewMoel: SignUpViewModelType
-	private var disposBag = DisposeBag()
+	private let viewModel: SignUpViewModelType
+	private var disposeBag = DisposeBag()
 	
 	private let stackView: UIStackView = {
 		let stackView = UIStackView()
@@ -46,24 +46,82 @@ final class SignUpViewController: UIViewController {
 	
 	
 	init(viewModel: SignUpViewModelType = SignUpViewModel()) {
-		self.viewMoel = viewModel
+		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
 	}
 	
 	required init?(coder: NSCoder) {
-		self.viewMoel = SignUpViewModel()
+		self.viewModel = SignUpViewModel()
 		super.init(coder: coder)
 	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.title = "회원가입"
 		self.view.backgroundColor = UIColor(named: "SignInBackgroundColor")
 		setupUI()
 		bind()
 	}
 	
 	private func bind() {
+		userEmailTextField.rx.text
+			.orEmpty
+			.bind(to: viewModel.input.userEmail)
+			.disposed(by: disposeBag)
 		
+		passWordTextField.rx.text
+			.orEmpty
+			.bind(to: viewModel.input.password)
+			.disposed(by: disposeBag)
+		
+		confirmButton.rx.tap
+			.bind(to: viewModel.input.confirmButtonTapped)
+			.disposed(by: disposeBag)
+		
+		viewModel.output.isValidUserEmail
+			.drive(
+				onNext: { [weak self] result in
+					if result {
+						self?.userEmailTextField.changeUIWithTextFieldMode(.normal)
+					} else {
+						self?.userEmailTextField.changeUIWithTextFieldMode(.warning)
+					}
+				}
+			)
+			.disposed(by: disposeBag)
+			
+		viewModel.output.isValidPassword
+			.drive(
+				onNext: { [weak self] result in
+					if result {
+						self?.passWordTextField.changeUIWithTextFieldMode(.normal)
+					} else {
+						self?.passWordTextField.changeUIWithTextFieldMode(.warning)
+					}
+				}
+			)
+			.disposed(by: disposeBag)
+		
+		viewModel.output.canTapConfirmButton
+			.drive(confirmButton.rx.isEnabled)
+			.disposed(by: disposeBag)
+		
+		viewModel.output.canTapConfirmButton
+			.map {$0 ? 1.0 : 0.3 }
+			.drive(confirmButton.rx.alpha)
+			.disposed(by: disposeBag)
+		
+		viewModel.output.registerInDenied
+			.drive(
+				onNext: { [weak self] _ in
+					self?.createAlertController(
+						title: "회원가입에러",
+						message: "이미 가입한 이메일입니다.",
+						buttonTitle: "확인"
+					)
+				}
+			)
+			.disposed(by: disposeBag)
 	}
 	
 	private func setupUI() {

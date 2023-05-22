@@ -1,7 +1,7 @@
 import RxSwift
 
-protocol SignUpUseCaseType {
-	func trySignUp(
+protocol SignInRepositoryType {
+	func trySignInUser(
 		userEmail: String,
 		password: String
 	) async -> Single<Void>

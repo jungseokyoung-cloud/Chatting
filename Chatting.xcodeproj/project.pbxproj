@@ -12,7 +12,7 @@
 		CEF3B1582A1643A40011CAAB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1572A1643A40011CAAB /* SignInViewController.swift */; };
 		CEF3B15D2A1643A50011CAAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF3B15C2A1643A50011CAAB /* Assets.xcassets */; };
 		CEF3B1602A1643A50011CAAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF3B15E2A1643A50011CAAB /* LaunchScreen.storyboard */; };
-		CEF3B1722A1644980011CAAB /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1712A1644980011CAAB /* UserRepository.swift */; };
+		CEF3B1722A1644980011CAAB /* SignInRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1712A1644980011CAAB /* SignInRepository.swift */; };
 		FE6F63942A166C5000BF3034 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F63932A166C5000BF3034 /* CustomTextField.swift */; };
 		FE6F63972A16747400BF3034 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE6F63962A16747400BF3034 /* Storyboard.storyboard */; };
 		FE6F639A2A16786C00BF3034 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F63992A16786C00BF3034 /* UIColor+Extension.swift */; };
@@ -26,6 +26,9 @@
 		FE9309ED2A1B8BF400CB427A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9309EC2A1B8BF400CB427A /* SignUpViewModel.swift */; };
 		FE9309EF2A1B8ECA00CB427A /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9309EE2A1B8ECA00CB427A /* SignUpUseCase.swift */; };
 		FE9309F12A1B8EDF00CB427A /* SignUpUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9309F02A1B8EDF00CB427A /* SignUpUseCaseImpl.swift */; };
+		FE9309F32A1B9EC400CB427A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9309F22A1B9EC400CB427A /* String+Extension.swift */; };
+		FE9309F52A1BA6E100CB427A /* SignUpRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9309F42A1BA6E100CB427A /* SignUpRepository.swift */; };
+		FE9309F72A1BA6EB00CB427A /* SignUpRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9309F62A1BA6EB00CB427A /* SignUpRepositoryImpl.swift */; };
 		FEA383BB2A175E4200205C44 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FEA383BA2A175E4200205C44 /* FirebaseAuth */; };
 		FEA383BD2A175E4200205C44 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = FEA383BC2A175E4200205C44 /* FirebaseDatabase */; };
 		FEA383BF2A175E4200205C44 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FEA383BE2A175E4200205C44 /* FirebaseMessaging */; };
@@ -33,7 +36,7 @@
 		FEA383C72A17985400205C44 /* NetworkErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA383C62A17985400205C44 /* NetworkErrorType.swift */; };
 		FEA383CB2A179AD000205C44 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA383CA2A179AD000205C44 /* Dummy.swift */; };
 		FEBC2AD82A17DA3500265452 /* DummyFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC2AD72A17DA3500265452 /* DummyFile.swift */; };
-		FEBC2AD92A17DBBD00265452 /* UserRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1792A1644BE0011CAAB /* UserRepositoryImpl.swift */; };
+		FEBC2AD92A17DBBD00265452 /* SignInRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1792A1644BE0011CAAB /* SignInRepositoryImpl.swift */; };
 		FEBC2ADA2A17DBC600265452 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1732A16449A0011CAAB /* SignInUseCase.swift */; };
 		FEBC2ADB2A17DBC900265452 /* SignInUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1742A16449C0011CAAB /* SignInUseCaseImpl.swift */; };
 /* End PBXBuildFile section */
@@ -45,11 +48,11 @@
 		CEF3B1572A1643A40011CAAB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CEF3B15C2A1643A50011CAAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEF3B15F2A1643A50011CAAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CEF3B1712A1644980011CAAB /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		CEF3B1712A1644980011CAAB /* SignInRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRepository.swift; sourceTree = "<group>"; };
 		CEF3B1732A16449A0011CAAB /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
 		CEF3B1742A16449C0011CAAB /* SignInUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCaseImpl.swift; sourceTree = "<group>"; };
 		CEF3B1782A1644BC0011CAAB /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
-		CEF3B1792A1644BE0011CAAB /* UserRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryImpl.swift; sourceTree = "<group>"; };
+		CEF3B1792A1644BE0011CAAB /* SignInRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRepositoryImpl.swift; sourceTree = "<group>"; };
 		FE6F63932A166C5000BF3034 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		FE6F63962A16747400BF3034 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		FE6F63992A16786C00BF3034 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -60,6 +63,9 @@
 		FE9309EC2A1B8BF400CB427A /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		FE9309EE2A1B8ECA00CB427A /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		FE9309F02A1B8EDF00CB427A /* SignUpUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCaseImpl.swift; sourceTree = "<group>"; };
+		FE9309F22A1B9EC400CB427A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		FE9309F42A1BA6E100CB427A /* SignUpRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRepository.swift; sourceTree = "<group>"; };
+		FE9309F62A1BA6EB00CB427A /* SignUpRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRepositoryImpl.swift; sourceTree = "<group>"; };
 		FEA383C02A17618300205C44 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEA383C12A17618300205C44 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FEA383C62A17985400205C44 /* NetworkErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorType.swift; sourceTree = "<group>"; };
@@ -201,7 +207,8 @@
 		CEF3B1702A1644900011CAAB /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				CEF3B1712A1644980011CAAB /* UserRepository.swift */,
+				CEF3B1712A1644980011CAAB /* SignInRepository.swift */,
+				FE9309F42A1BA6E100CB427A /* SignUpRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -209,7 +216,8 @@
 		CEF3B1762A1644A30011CAAB /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				CEF3B1792A1644BE0011CAAB /* UserRepositoryImpl.swift */,
+				CEF3B1792A1644BE0011CAAB /* SignInRepositoryImpl.swift */,
+				FE9309F62A1BA6EB00CB427A /* SignUpRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -255,6 +263,7 @@
 				FE6F63992A16786C00BF3034 /* UIColor+Extension.swift */,
 				FE6F63AD2A16852800BF3034 /* RxViewController.swift */,
 				FE71E50D2A192D8F003BCFF1 /* UIViewController+Extension.swift */,
+				FE9309F22A1B9EC400CB427A /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -369,20 +378,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEBC2ADA2A17DBC600265452 /* SignInUseCase.swift in Sources */,
-				FEBC2AD92A17DBBD00265452 /* UserRepositoryImpl.swift in Sources */,
+				FEBC2AD92A17DBBD00265452 /* SignInRepositoryImpl.swift in Sources */,
 				CEF3B1582A1643A40011CAAB /* SignInViewController.swift in Sources */,
 				FE71E50E2A192D8F003BCFF1 /* UIViewController+Extension.swift in Sources */,
 				FE9309EF2A1B8ECA00CB427A /* SignUpUseCase.swift in Sources */,
 				FE6F639C2A167E5900BF3034 /* SignInViewModel.swift in Sources */,
 				FEA383CB2A179AD000205C44 /* Dummy.swift in Sources */,
 				FEBC2ADB2A17DBC900265452 /* SignInUseCaseImpl.swift in Sources */,
+				FE9309F32A1B9EC400CB427A /* String+Extension.swift in Sources */,
 				FE6F63AE2A16852800BF3034 /* RxViewController.swift in Sources */,
+				FE9309F52A1BA6E100CB427A /* SignUpRepository.swift in Sources */,
 				CEF3B1542A1643A40011CAAB /* AppDelegate.swift in Sources */,
 				FE9309ED2A1B8BF400CB427A /* SignUpViewModel.swift in Sources */,
-				CEF3B1722A1644980011CAAB /* UserRepository.swift in Sources */,
+				CEF3B1722A1644980011CAAB /* SignInRepository.swift in Sources */,
 				FE9309EB2A1B8BEF00CB427A /* SignUpViewController.swift in Sources */,
 				FE6F639A2A16786C00BF3034 /* UIColor+Extension.swift in Sources */,
 				FEA383C72A17985400205C44 /* NetworkErrorType.swift in Sources */,
+				FE9309F72A1BA6EB00CB427A /* SignUpRepositoryImpl.swift in Sources */,
 				CEF3B1562A1643A40011CAAB /* SceneDelegate.swift in Sources */,
 				FEBC2AD82A17DA3500265452 /* DummyFile.swift in Sources */,
 				FE6F63942A166C5000BF3034 /* CustomTextField.swift in Sources */,

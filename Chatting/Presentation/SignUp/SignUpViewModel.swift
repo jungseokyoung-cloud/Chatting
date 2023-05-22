@@ -12,7 +12,7 @@ protocol SignUpViewModelOutput {
 	var isValidUserEmail: Driver<Bool> { get }
 	var isValidPassword: Driver<Bool> { get }
 	var canTapConfirmButton: Driver<Bool> { get }
-//	var registerInDenied: Driver<Void> { get }
+	var registerInDenied: Driver<Void> { get }
 }
 
 protocol SignUpViewModelType {
@@ -40,7 +40,9 @@ final class SignUpViewModel: SignUpViewModelType,
 	var isValidUserEmail: Driver<Bool>
 	var isValidPassword: Driver<Bool>
 	var canTapConfirmButton: Driver<Bool>
-//	var registerInDenied: Driver<Void>
+	var registerInDenied: Driver<Void>
+	
+	private let registerInDenied$ = PublishSubject<Void>()
 	
 	init(dependency: SignUpUseCaseType = SignUpUseCaseImpl()) {
 		self.dependency = dependency
@@ -48,7 +50,7 @@ final class SignUpViewModel: SignUpViewModelType,
 		let isValidUserEmail$ = userEmail
 			.skip(1)
 			.map { email in
-				if (email.contains("@") && email.contains(".")) {
+				if (email.checkValidPattern(.email)) {
 					return true
 				} else {
 					return false
@@ -77,5 +79,26 @@ final class SignUpViewModel: SignUpViewModelType,
 		self.isValidUserEmail = isValidUserEmail$.asDriver(onErrorJustReturn: false)
 		self.isValidPassword = isValidPassword$.asDriver(onErrorJustReturn: false)
 		self.canTapConfirmButton = isValid$.asDriver(onErrorJustReturn: false)
+		self.registerInDenied = registerInDenied$.asDriver(onErrorJustReturn: ())
+		
+		confirmButtonTapped
+			.subscribe(onNext: (signUpButtonTapped))
+			.disposed(by: disposBag)
+	}
+	
+	private func signUpButtonTapped() {
+		
+		Task {
+			let result: Void? = try? await dependency.trySignUp(
+				userEmail: userEmail.value,
+				password: password.value
+			).value
+			
+			if result != nil {
+				print("SignUpSuccess")
+			} else {
+				registerInDenied$.onNext(())
+			}
+		}
 	}
 }

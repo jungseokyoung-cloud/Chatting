@@ -105,10 +105,6 @@ final class SignInViewController: UIViewController {
 			.bind(to: viewModel.input.confirmButtonTapped)
 			.disposed(by: disposBag)
 		
-		registerButton.rx.tap
-			.bind(to: viewModel.input.registerButtonTapped)
-			.disposed(by: disposBag)
-		
 		viewModel.output.isValidUserEmail
 			.drive(
 				onNext: { [weak self] result in
@@ -151,6 +147,15 @@ final class SignInViewController: UIViewController {
 						title: "로그인 에러",
 						message: "유저 아이디 혹은 비밀번호가 잘못 입력되었습니다.",
 						buttonTitle: "확인")
+				}
+			)
+			.disposed(by: disposBag)
+		
+		registerButton.rx.tap
+			.subscribe(
+				onNext: { [weak self] _ in
+					let vc = SignUpViewController()
+					self?.navigationController?.pushViewController(vc, animated: true)
 				}
 			)
 			.disposed(by: disposBag)

@@ -63,7 +63,7 @@ final class SignInViewModel: SignInViewModelType,
 		let isValidUserEmail$ = userEmail
 			.skip(1)
 			.map { email in
-				if (email.contains("@") && email.contains(".")) {
+				if (email.checkValidPattern(.email)) {
 					return true
 				} else {
 					return false
