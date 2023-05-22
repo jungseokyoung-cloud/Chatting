@@ -55,7 +55,7 @@ final class SignInViewController: UIViewController {
 		return stackView
 	}()
 	
-	private lazy var findPasswordButton = {
+	private let findPasswordButton = {
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.setTitle("비밀번호 찾기", for: .normal)
@@ -64,7 +64,7 @@ final class SignInViewController: UIViewController {
 		return button
 	}()
 	
-	private lazy var registerButton = {
+	private let registerButton = {
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.setTitle("회원가입", for: .normal)
@@ -103,6 +103,10 @@ final class SignInViewController: UIViewController {
 		
 		confirmButton.rx.tap
 			.bind(to: viewModel.input.confirmButtonTapped)
+			.disposed(by: disposBag)
+		
+		registerButton.rx.tap
+			.bind(to: viewModel.input.registerButtonTapped)
 			.disposed(by: disposBag)
 		
 		viewModel.output.isValidUserEmail

@@ -2,7 +2,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RxRelay
-import Firebase
 
 protocol SignInViewModelInput {
 	var userEmail: BehaviorRelay<String> { get }
@@ -57,7 +56,12 @@ final class SignInViewModel: SignInViewModelType,
 	init(dependency: SignInUseCaseType = SignInUseCase()) {
 		self.dependency = dependency
 		
+		registerButtonTapped
+			.subscribe(onNext: {print("isTapped")})
+			.disposed(by: disposeBag)
+		
 		let isValidUserEmail$ = userEmail
+			.skip(1)
 			.map { email in
 				if (email.contains("@") && email.contains(".")) {
 					return true
@@ -67,6 +71,7 @@ final class SignInViewModel: SignInViewModelType,
 			}
 		
 		let isValidPassword$ = password
+			.skip(1)
 			.map { password in
 				if (password.count >= 6) {
 					return true
