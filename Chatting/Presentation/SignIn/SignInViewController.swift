@@ -151,6 +151,16 @@ final class SignInViewController: UIViewController {
 			)
 			.disposed(by: disposBag)
 		
+		viewModel.output.signInSuccess
+			.drive(
+				onNext: { [weak self] _ in
+					let vc = FriendListViewController()
+					vc.modalPresentationStyle = .fullScreen
+					self?.present(vc, animated: true)
+				}
+			)
+			.disposed(by: disposBag)
+		
 		registerButton.rx.tap
 			.subscribe(
 				onNext: { [weak self] _ in

@@ -9,7 +9,6 @@ protocol SignInViewModelInput {
 	var confirmButtonTapped: PublishRelay<Void> { get set }
 	var findIdButtonTapped: PublishRelay<Void> { get set }
 	var findPasswordButtonTapped: PublishRelay<Void> { get set }
-	var registerButtonTapped: PublishRelay<Void> { get set }
 }
 
 protocol SignInViewModelOutput {
@@ -17,6 +16,7 @@ protocol SignInViewModelOutput {
 	var isValidPassword: Driver<Bool> { get set }
 	var canTapConfirmButton: Driver<Bool> { get set }
 	var signInDenied: Driver<Void> { get }
+	var signInSuccess: Driver<Void> { get }
 }
 
 protocol SignInViewModelType {
@@ -44,22 +44,19 @@ final class SignInViewModel: SignInViewModelType,
 	var confirmButtonTapped = PublishRelay<Void>()
 	var findIdButtonTapped = PublishRelay<Void>()
 	var findPasswordButtonTapped = PublishRelay<Void>()
-	var registerButtonTapped = PublishRelay<Void>()
 	
 	var isValidUserEmail: Driver<Bool>
 	var isValidPassword: Driver<Bool>
 	var canTapConfirmButton: Driver<Bool>
 	var signInDenied: Driver<Void>
-	
+	var signInSuccess: Driver<Void>
+
 	private let signInDenied$ = PublishSubject<Void>()
+	private let signInSuccess$ = PublishSubject<Void>()
 
 	init(dependency: SignInUseCaseType = SignInUseCase()) {
 		self.dependency = dependency
-		
-		registerButtonTapped
-			.subscribe(onNext: {print("isTapped")})
-			.disposed(by: disposeBag)
-		
+				
 		let isValidUserEmail$ = userEmail
 			.skip(1)
 			.map { email in
@@ -93,6 +90,7 @@ final class SignInViewModel: SignInViewModelType,
 		isValidUserEmail = isValidUserEmail$.asDriver(onErrorJustReturn: false)
 		isValidPassword = isValidPassword$.asDriver(onErrorJustReturn: false)
 		signInDenied = signInDenied$.asDriver(onErrorJustReturn: ())
+		signInSuccess = signInSuccess$.asDriver(onErrorJustReturn: ())
 		
 		confirmButtonTapped
 			.subscribe(onNext: (signInButtonTapped))
@@ -107,7 +105,7 @@ final class SignInViewModel: SignInViewModelType,
 			).value
 			
 			if result != nil {
-				print("loginSuccess")
+				signInSuccess$.onNext(())
 			} else {
 				signInDenied$.onNext(())
 			}
