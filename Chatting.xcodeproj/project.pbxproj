@@ -22,6 +22,7 @@
 		FE6F63AA2A16844000BF3034 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = FE6F63A92A16844000BF3034 /* RxRelay */; };
 		FE6F63AC2A16844000BF3034 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE6F63AB2A16844000BF3034 /* RxSwift */; };
 		FE6F63AE2A16852800BF3034 /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F63AD2A16852800BF3034 /* RxViewController.swift */; };
+		FE6FFA002A25DC9E00DBD335 /* UserDefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6FF9FF2A25DC9E00DBD335 /* UserDefaultStorage.swift */; };
 		FE71E50E2A192D8F003BCFF1 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71E50D2A192D8F003BCFF1 /* UIViewController+Extension.swift */; };
 		FE9309EB2A1B8BEF00CB427A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9309EA2A1B8BEF00CB427A /* SignUpViewController.swift */; };
 		FE9309ED2A1B8BF400CB427A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9309EC2A1B8BF400CB427A /* SignUpViewModel.swift */; };
@@ -36,7 +37,7 @@
 		FEA383C42A17656200205C44 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEA383C12A17618300205C44 /* GoogleService-Info.plist */; };
 		FEA383C72A17985400205C44 /* NetworkErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA383C62A17985400205C44 /* NetworkErrorType.swift */; };
 		FEA383CB2A179AD000205C44 /* FriendListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA383CA2A179AD000205C44 /* FriendListViewModel.swift */; };
-		FEBC2AD82A17DA3500265452 /* DummyFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC2AD72A17DA3500265452 /* DummyFile.swift */; };
+		FEBC2AD82A17DA3500265452 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC2AD72A17DA3500265452 /* User.swift */; };
 		FEBC2AD92A17DBBD00265452 /* SignInRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1792A1644BE0011CAAB /* SignInRepositoryImpl.swift */; };
 		FEBC2ADA2A17DBC600265452 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1732A16449A0011CAAB /* SignInUseCase.swift */; };
 		FEBC2ADB2A17DBC900265452 /* SignInUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1742A16449C0011CAAB /* SignInUseCaseImpl.swift */; };
@@ -60,6 +61,7 @@
 		FE6F63992A16786C00BF3034 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		FE6F639B2A167E5900BF3034 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		FE6F63AD2A16852800BF3034 /* RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
+		FE6FF9FF2A25DC9E00DBD335 /* UserDefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultStorage.swift; sourceTree = "<group>"; };
 		FE71E50D2A192D8F003BCFF1 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		FE9309EA2A1B8BEF00CB427A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		FE9309EC2A1B8BF400CB427A /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -72,7 +74,7 @@
 		FEA383C12A17618300205C44 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FEA383C62A17985400205C44 /* NetworkErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorType.swift; sourceTree = "<group>"; };
 		FEA383CA2A179AD000205C44 /* FriendListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewModel.swift; sourceTree = "<group>"; };
-		FEBC2AD72A17DA3500265452 /* DummyFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyFile.swift; sourceTree = "<group>"; };
+		FEBC2AD72A17DA3500265452 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 		CEF3B1682A16443D0011CAAB /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FE6FF9FE2A25DC8C00DBD335 /* PersistanceStorage */,
 				CEF3B1772A1644AC0011CAAB /* DTO */,
 				CEF3B1762A1644A30011CAAB /* Repositories */,
 			);
@@ -174,7 +177,7 @@
 		CEF3B16C2A1644790011CAAB /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				FEBC2AD72A17DA3500265452 /* DummyFile.swift */,
+				FEBC2AD72A17DA3500265452 /* User.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -268,6 +271,14 @@
 				FE9309F22A1B9EC400CB427A /* String+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FE6FF9FE2A25DC8C00DBD335 /* PersistanceStorage */ = {
+			isa = PBXGroup;
+			children = (
+				FE6FF9FF2A25DC9E00DBD335 /* UserDefaultStorage.swift */,
+			);
+			path = PersistanceStorage;
 			sourceTree = "<group>";
 		};
 		FEA383C52A17984100205C44 /* Utils */ = {
@@ -392,6 +403,7 @@
 				FE6F63AE2A16852800BF3034 /* RxViewController.swift in Sources */,
 				FE9309F52A1BA6E100CB427A /* SignUpRepository.swift in Sources */,
 				CEF3B1542A1643A40011CAAB /* AppDelegate.swift in Sources */,
+				FE6FFA002A25DC9E00DBD335 /* UserDefaultStorage.swift in Sources */,
 				FE4FE09E2A1C835400B373E0 /* FriendListViewController.swift in Sources */,
 				FE9309ED2A1B8BF400CB427A /* SignUpViewModel.swift in Sources */,
 				CEF3B1722A1644980011CAAB /* SignInRepository.swift in Sources */,
@@ -400,7 +412,7 @@
 				FEA383C72A17985400205C44 /* NetworkErrorType.swift in Sources */,
 				FE9309F72A1BA6EB00CB427A /* SignUpRepositoryImpl.swift in Sources */,
 				CEF3B1562A1643A40011CAAB /* SceneDelegate.swift in Sources */,
-				FEBC2AD82A17DA3500265452 /* DummyFile.swift in Sources */,
+				FEBC2AD82A17DA3500265452 /* User.swift in Sources */,
 				FE6F63942A166C5000BF3034 /* CustomTextField.swift in Sources */,
 				FE9309F12A1B8EDF00CB427A /* SignUpUseCaseImpl.swift in Sources */,
 			);

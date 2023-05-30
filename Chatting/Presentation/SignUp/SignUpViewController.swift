@@ -16,7 +16,7 @@ final class SignUpViewController: UIViewController {
 		
 		return stackView
 	}()
-
+	
 	private let userEmailTextField: CustomTextField = {
 		let textField = CustomTextField(placeHolder: "이메일을 입력하세요.")
 		textField.textContentType = .nickname
@@ -89,7 +89,7 @@ final class SignUpViewController: UIViewController {
 				}
 			)
 			.disposed(by: disposeBag)
-			
+		
 		viewModel.output.isValidPassword
 			.drive(
 				onNext: { [weak self] result in
@@ -119,6 +119,14 @@ final class SignUpViewController: UIViewController {
 						message: "이미 가입한 이메일입니다.",
 						buttonTitle: "확인"
 					)
+				}
+			)
+			.disposed(by: disposeBag)
+		
+		viewModel.output.registerSuccess
+			.drive(
+				onNext: { [weak self] _ in
+					self?.navigationController?.popViewController(animated: true)
 				}
 			)
 			.disposed(by: disposeBag)

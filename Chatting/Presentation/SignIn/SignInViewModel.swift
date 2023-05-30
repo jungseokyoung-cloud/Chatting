@@ -16,7 +16,7 @@ protocol SignInViewModelOutput {
 	var isValidPassword: Driver<Bool> { get set }
 	var canTapConfirmButton: Driver<Bool> { get set }
 	var signInDenied: Driver<Void> { get }
-	var signInSuccess: Driver<Void> { get }
+	var signInSuccess: Driver<User> { get }
 }
 
 protocol SignInViewModelType {
@@ -33,6 +33,8 @@ final class SignInViewModel: SignInViewModelType,
 														 SignInViewModelInput,
 														 SignInViewModelOutput
 {
+
+	
 	var dependency: SignInUseCaseType
 	var disposeBag = DisposeBag()
 	
@@ -49,10 +51,10 @@ final class SignInViewModel: SignInViewModelType,
 	var isValidPassword: Driver<Bool>
 	var canTapConfirmButton: Driver<Bool>
 	var signInDenied: Driver<Void>
-	var signInSuccess: Driver<Void>
+	var signInSuccess: Driver<User>
 
 	private let signInDenied$ = PublishSubject<Void>()
-	private let signInSuccess$ = PublishSubject<Void>()
+	private let signInSuccess$ = PublishSubject<User>()
 
 	init(dependency: SignInUseCaseType = SignInUseCase()) {
 		self.dependency = dependency
@@ -90,22 +92,23 @@ final class SignInViewModel: SignInViewModelType,
 		isValidUserEmail = isValidUserEmail$.asDriver(onErrorJustReturn: false)
 		isValidPassword = isValidPassword$.asDriver(onErrorJustReturn: false)
 		signInDenied = signInDenied$.asDriver(onErrorJustReturn: ())
-		signInSuccess = signInSuccess$.asDriver(onErrorJustReturn: ())
+		signInSuccess = signInSuccess$.asDriver(onErrorJustReturn: (User(email: "", password: "")))
 		
 		confirmButtonTapped
 			.subscribe(onNext: (signInButtonTapped))
 			.disposed(by: disposeBag)
 	}
-	
+
 	private func signInButtonTapped() {
 		Task {
-			let result: Void? = try? await dependency.trySignInUser(
+			let result = try? await dependency.trySignInUser(
 				userEmail: userEmail.value,
 				password: password.value
 			).value
 			
-			if result != nil {
-				signInSuccess$.onNext(())
+			if let userInfo = result {
+				signInSuccess$.onNext(userInfo)
+				UserDefaultStorage().saveUserInfo(user: userInfo)
 			} else {
 				signInDenied$.onNext(())
 			}

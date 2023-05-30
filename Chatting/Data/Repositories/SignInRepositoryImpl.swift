@@ -5,13 +5,13 @@ final class SignInRepository: SignInRepositoryType {
 	func trySignInUser(
 		userEmail: String,
 		password: String
-	) async -> Single<Void> {
+	) async -> Single<User> {
 		
 		let result = try? await Auth.auth().signIn(withEmail: userEmail, password: password)
 		
-		return Single<Void>.create { emitter in
+		return Single<User>.create { emitter in
 			if result != nil {
-				emitter(.success(()))
+				emitter(.success(User(email: userEmail, password: password)))
 			} else {
 				emitter(.failure(NetworkError.InValidSignIn))
 			}

@@ -10,7 +10,7 @@ final class SignInUseCase: SignInUseCaseType {
 	func trySignInUser(
 		userEmail: String,
 		password: String
-	) async -> Single<Void> {
+	) async -> Single<User> {
 		return await dependency.trySignInUser(
 			userEmail: userEmail,
 			password: password

@@ -7,7 +7,27 @@ final class FriendListViewController: UIViewController {
 		return tableView
 	}()
 	
+//	private lazy var logOutButton: UIBarButtonItem = {
+//		let button = UIBarButtonItem(
+//			title: "logOut",
+//			style: .plain,
+//			target: self,
+//			action: #selector(logOutButtonTapped)
+//		)
+//		self.navigationItem.rightBarButtonItem = button
+//		return button
+//	}()
+	
 	override func viewDidLoad() {
+		self.navigationItem.hidesBackButton = true
+		let button = UIBarButtonItem(
+			title: "logOut",
+			style: .plain,
+			target: self,
+			action: #selector(logOutButtonTapped)
+		)
+		self.navigationItem.rightBarButtonItem = button
+		
 		super.viewDidLoad()
 		self.title = "친구 목록"
 		self.view.backgroundColor = .white
@@ -27,5 +47,18 @@ final class FriendListViewController: UIViewController {
 			FriendTableView.topAnchor.constraint(equalTo: view.topAnchor),
 			FriendTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 		])
+	}
+}
+
+extension FriendListViewController {
+	
+	@objc func logOutButtonTapped() {
+		UserDefaultStorage().removeUserInfo()
+//		let vc = SignInViewController()
+//		vc.modalPresentationStyle = .fullScreen
+//
+		self.navigationController?.popViewController(animated: true)
+//		present(vc, animated: true)
+//		self.dismiss(animated: true)
 	}
 }

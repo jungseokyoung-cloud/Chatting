@@ -4,5 +4,5 @@ protocol SignInRepositoryType {
 	func trySignInUser(
 		userEmail: String,
 		password: String
-	) async -> Single<Void>
+	) async -> Single<User>
 }

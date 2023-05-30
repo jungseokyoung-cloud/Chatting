@@ -13,6 +13,7 @@ protocol SignUpViewModelOutput {
 	var isValidPassword: Driver<Bool> { get }
 	var canTapConfirmButton: Driver<Bool> { get }
 	var registerInDenied: Driver<Void> { get }
+	var registerSuccess: Driver<Void> { get }
 }
 
 protocol SignUpViewModelType {
@@ -41,9 +42,11 @@ final class SignUpViewModel: SignUpViewModelType,
 	var isValidPassword: Driver<Bool>
 	var canTapConfirmButton: Driver<Bool>
 	var registerInDenied: Driver<Void>
+	var registerSuccess: Driver<Void>
 	
 	private let registerInDenied$ = PublishSubject<Void>()
-	
+	private let registerSuccess$ = PublishSubject<Void>()
+
 	init(dependency: SignUpUseCaseType = SignUpUseCaseImpl()) {
 		self.dependency = dependency
 		
@@ -80,6 +83,7 @@ final class SignUpViewModel: SignUpViewModelType,
 		self.isValidPassword = isValidPassword$.asDriver(onErrorJustReturn: false)
 		self.canTapConfirmButton = isValid$.asDriver(onErrorJustReturn: false)
 		self.registerInDenied = registerInDenied$.asDriver(onErrorJustReturn: ())
+		self.registerSuccess = registerSuccess$.asDriver(onErrorJustReturn: ())
 		
 		confirmButtonTapped
 			.subscribe(onNext: (signUpButtonTapped))
@@ -87,7 +91,6 @@ final class SignUpViewModel: SignUpViewModelType,
 	}
 	
 	private func signUpButtonTapped() {
-		
 		Task {
 			let result: Void? = try? await dependency.trySignUp(
 				userEmail: userEmail.value,
@@ -95,7 +98,7 @@ final class SignUpViewModel: SignUpViewModelType,
 			).value
 			
 			if result != nil {
-				print("SignUpSuccess")
+				registerSuccess$.onNext(())
 			} else {
 				registerInDenied$.onNext(())
 			}

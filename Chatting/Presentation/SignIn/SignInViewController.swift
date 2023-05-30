@@ -91,6 +91,15 @@ final class SignInViewController: UIViewController {
 	}
 	
 	private func bind() {
+		self.rx.viewWillAppear
+			.subscribe(
+				onNext: { [weak self] _ in
+					self?.userEmailTextField.text = ""
+					self?.passWordTextField.text = ""
+				}
+			)
+			.disposed(by: disposBag)
+		
 		userEmailTextField.rx.text
 			.orEmpty
 			.bind(to: viewModel.input.userEmail)
@@ -156,7 +165,7 @@ final class SignInViewController: UIViewController {
 				onNext: { [weak self] _ in
 					let vc = FriendListViewController()
 					vc.modalPresentationStyle = .fullScreen
-					self?.present(vc, animated: true)
+					self?.navigationController?.pushViewController(vc, animated: true)
 				}
 			)
 			.disposed(by: disposBag)
