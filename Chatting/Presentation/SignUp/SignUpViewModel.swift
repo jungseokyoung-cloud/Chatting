@@ -22,6 +22,8 @@ protocol SignUpViewModelType {
 	
 	var input: SignUpViewModelInput { get }
 	var output: SignUpViewModelOutput { get }
+	
+	init(dependency: SignUpUseCaseType)
 }
 
 final class SignUpViewModel: SignUpViewModelType,

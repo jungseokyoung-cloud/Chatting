@@ -1,6 +1,11 @@
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class AddFriendPopUpViewController: UIViewController {
+	private let viewModel: AddFriendPopUpViewModelType
+	private var disposBag = DisposeBag()
+	
 	private let containerView: UIView = {
 		let view = UIView()
 		view.translatesAutoresizingMaskIntoConstraints = false
@@ -48,20 +53,41 @@ final class AddFriendPopUpViewController: UIViewController {
 		return button
 	}()
 	
-	private lazy var addButton: UIButton = {
+	private let addButton: UIButton = {
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.setTitle("친구 추가", for: .normal)
 		button.backgroundColor = UIColor(rgb: 0x5f84a2)
 		button.layer.cornerRadius = 10.0
-		button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
 
 		return button
 	}()
 	
+	init(viewModel: AddFriendPopUpViewModelType = AddFriendPopUpViewModel()) {
+		self.viewModel = viewModel
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		self.viewModel = AddFriendPopUpViewModel()
+		super.init(coder: coder)
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		bind()
 		setupUI()
+	}
+	
+	private func bind() {
+		textField.rx.text
+			.orEmpty
+			.bind(to: viewModel.input.friendName)
+			.disposed(by: disposBag)
+		
+		addButton.rx.tap
+			.bind(to: viewModel.input.addButtonTapped)
+			.disposed(by: disposBag)
 	}
 	
 	private func setupUI() {
@@ -99,9 +125,5 @@ final class AddFriendPopUpViewController: UIViewController {
 extension AddFriendPopUpViewController {
 	@objc func closeButtonTapped() {
 		self.dismiss(animated: true)
-	}
-	
-	@objc func addButtonTapped() {
-		guard let text = textField.text else { return }
 	}
 }
