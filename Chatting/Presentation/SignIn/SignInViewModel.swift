@@ -108,7 +108,6 @@ final class SignInViewModel: SignInViewModelType,
 			
 			if let userInfo = result {
 				signInSuccess$.onNext(userInfo)
-				UserDefaultStorage().saveUserInfo(user: userInfo)
 			} else {
 				signInDenied$.onNext(())
 			}

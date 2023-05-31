@@ -23,6 +23,9 @@
 		FE6F63AC2A16844000BF3034 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE6F63AB2A16844000BF3034 /* RxSwift */; };
 		FE6F63AE2A16852800BF3034 /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6F63AD2A16852800BF3034 /* RxViewController.swift */; };
 		FE6FFA002A25DC9E00DBD335 /* UserDefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6FF9FF2A25DC9E00DBD335 /* UserDefaultStorage.swift */; };
+		FE6FFA052A27307600DBD335 /* AddFriendPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6FFA042A27307600DBD335 /* AddFriendPopUpViewController.swift */; };
+		FE6FFA082A2730C700DBD335 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6FFA072A2730C700DBD335 /* ChattingViewController.swift */; };
+		FE6FFA0A2A2730CB00DBD335 /* ChattingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6FFA092A2730CB00DBD335 /* ChattingViewModel.swift */; };
 		FE71E50E2A192D8F003BCFF1 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71E50D2A192D8F003BCFF1 /* UIViewController+Extension.swift */; };
 		FE9309EB2A1B8BEF00CB427A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9309EA2A1B8BEF00CB427A /* SignUpViewController.swift */; };
 		FE9309ED2A1B8BF400CB427A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9309EC2A1B8BF400CB427A /* SignUpViewModel.swift */; };
@@ -41,6 +44,7 @@
 		FEBC2AD92A17DBBD00265452 /* SignInRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1792A1644BE0011CAAB /* SignInRepositoryImpl.swift */; };
 		FEBC2ADA2A17DBC600265452 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1732A16449A0011CAAB /* SignInUseCase.swift */; };
 		FEBC2ADB2A17DBC900265452 /* SignInUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B1742A16449C0011CAAB /* SignInUseCaseImpl.swift */; };
+		FEC52B5C2A278D2700B0E94E /* AddFriendPopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC52B5B2A278D2700B0E94E /* AddFriendPopUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +66,9 @@
 		FE6F639B2A167E5900BF3034 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		FE6F63AD2A16852800BF3034 /* RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
 		FE6FF9FF2A25DC9E00DBD335 /* UserDefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultStorage.swift; sourceTree = "<group>"; };
+		FE6FFA042A27307600DBD335 /* AddFriendPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendPopUpViewController.swift; sourceTree = "<group>"; };
+		FE6FFA072A2730C700DBD335 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
+		FE6FFA092A2730CB00DBD335 /* ChattingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewModel.swift; sourceTree = "<group>"; };
 		FE71E50D2A192D8F003BCFF1 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		FE9309EA2A1B8BEF00CB427A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		FE9309EC2A1B8BF400CB427A /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -75,6 +82,7 @@
 		FEA383C62A17985400205C44 /* NetworkErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorType.swift; sourceTree = "<group>"; };
 		FEA383CA2A179AD000205C44 /* FriendListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewModel.swift; sourceTree = "<group>"; };
 		FEBC2AD72A17DA3500265452 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FEC52B5B2A278D2700B0E94E /* AddFriendPopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendPopUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +156,7 @@
 		CEF3B1692A1644530011CAAB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FE6FFA062A2730B500DBD335 /* Chatting */,
 				FEA383C92A179ACB00205C44 /* SignUp */,
 				FEA383C82A179ABE00205C44 /* FriendList */,
 				FE6F638F2A166B8700BF3034 /* SignIn */,
@@ -281,6 +290,24 @@
 			path = PersistanceStorage;
 			sourceTree = "<group>";
 		};
+		FE6FFA012A27306300DBD335 /* AddFriendPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				FE6FFA042A27307600DBD335 /* AddFriendPopUpViewController.swift */,
+				FEC52B5B2A278D2700B0E94E /* AddFriendPopUpViewModel.swift */,
+			);
+			path = AddFriendPopUp;
+			sourceTree = "<group>";
+		};
+		FE6FFA062A2730B500DBD335 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				FE6FFA072A2730C700DBD335 /* ChattingViewController.swift */,
+				FE6FFA092A2730CB00DBD335 /* ChattingViewModel.swift */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
 		FEA383C52A17984100205C44 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +319,7 @@
 		FEA383C82A179ABE00205C44 /* FriendList */ = {
 			isa = PBXGroup;
 			children = (
+				FE6FFA012A27306300DBD335 /* AddFriendPopUp */,
 				FEA383CA2A179AD000205C44 /* FriendListViewModel.swift */,
 				FE4FE09D2A1C835400B373E0 /* FriendListViewController.swift */,
 			);
@@ -395,13 +423,16 @@
 				FEBC2AD92A17DBBD00265452 /* SignInRepositoryImpl.swift in Sources */,
 				CEF3B1582A1643A40011CAAB /* SignInViewController.swift in Sources */,
 				FE71E50E2A192D8F003BCFF1 /* UIViewController+Extension.swift in Sources */,
+				FE6FFA0A2A2730CB00DBD335 /* ChattingViewModel.swift in Sources */,
 				FE9309EF2A1B8ECA00CB427A /* SignUpUseCase.swift in Sources */,
 				FE6F639C2A167E5900BF3034 /* SignInViewModel.swift in Sources */,
 				FEA383CB2A179AD000205C44 /* FriendListViewModel.swift in Sources */,
+				FEC52B5C2A278D2700B0E94E /* AddFriendPopUpViewModel.swift in Sources */,
 				FEBC2ADB2A17DBC900265452 /* SignInUseCaseImpl.swift in Sources */,
 				FE9309F32A1B9EC400CB427A /* String+Extension.swift in Sources */,
 				FE6F63AE2A16852800BF3034 /* RxViewController.swift in Sources */,
 				FE9309F52A1BA6E100CB427A /* SignUpRepository.swift in Sources */,
+				FE6FFA052A27307600DBD335 /* AddFriendPopUpViewController.swift in Sources */,
 				CEF3B1542A1643A40011CAAB /* AppDelegate.swift in Sources */,
 				FE6FFA002A25DC9E00DBD335 /* UserDefaultStorage.swift in Sources */,
 				FE4FE09E2A1C835400B373E0 /* FriendListViewController.swift in Sources */,
@@ -413,6 +444,7 @@
 				FE9309F72A1BA6EB00CB427A /* SignUpRepositoryImpl.swift in Sources */,
 				CEF3B1562A1643A40011CAAB /* SceneDelegate.swift in Sources */,
 				FEBC2AD82A17DA3500265452 /* User.swift in Sources */,
+				FE6FFA082A2730C700DBD335 /* ChattingViewController.swift in Sources */,
 				FE6F63942A166C5000BF3034 /* CustomTextField.swift in Sources */,
 				FE9309F12A1B8EDF00CB427A /* SignUpUseCaseImpl.swift in Sources */,
 			);

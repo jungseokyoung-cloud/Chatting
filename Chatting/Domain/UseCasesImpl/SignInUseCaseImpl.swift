@@ -16,5 +16,4 @@ final class SignInUseCase: SignInUseCaseType {
 			password: password
 		)
 	}
-	
 }

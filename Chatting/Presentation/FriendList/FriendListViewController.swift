@@ -7,30 +7,29 @@ final class FriendListViewController: UIViewController {
 		return tableView
 	}()
 	
-//	private lazy var logOutButton: UIBarButtonItem = {
-//		let button = UIBarButtonItem(
-//			title: "logOut",
-//			style: .plain,
-//			target: self,
-//			action: #selector(logOutButtonTapped)
-//		)
-//		self.navigationItem.rightBarButtonItem = button
-//		return button
-//	}()
-	
 	override func viewDidLoad() {
 		self.navigationItem.hidesBackButton = true
+		
 		let button = UIBarButtonItem(
 			title: "logOut",
 			style: .plain,
 			target: self,
 			action: #selector(logOutButtonTapped)
 		)
+		
+		let button2 = UIBarButtonItem(
+			title: "친구 추가",
+			style: .plain,
+			target: self,
+			action: #selector(addFriendButtonTapped)
+		)
 		self.navigationItem.rightBarButtonItem = button
+		self.navigationItem.leftBarButtonItem = button2
+
 		
 		super.viewDidLoad()
 		self.title = "친구 목록"
-		self.view.backgroundColor = .white
+		self.view.backgroundColor = UIColor(named: "SignInBackgroundColor")
 		bind()
 		setupUI()
 	}
@@ -54,11 +53,15 @@ extension FriendListViewController {
 	
 	@objc func logOutButtonTapped() {
 		UserDefaultStorage().removeUserInfo()
-//		let vc = SignInViewController()
-//		vc.modalPresentationStyle = .fullScreen
-//
 		self.navigationController?.popViewController(animated: true)
-//		present(vc, animated: true)
-//		self.dismiss(animated: true)
+	}
+	
+	@objc func addFriendButtonTapped() {
+
+		let vc = AddFriendPopUpViewController()
+		self.view.alpha = 50.0
+		vc.modalPresentationStyle = .overFullScreen
+		present(vc, animated: true)
+		
 	}
 }

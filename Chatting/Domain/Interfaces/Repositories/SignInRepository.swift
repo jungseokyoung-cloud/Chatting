@@ -5,4 +5,6 @@ protocol SignInRepositoryType {
 		userEmail: String,
 		password: String
 	) async -> Single<User>
+	
+	init(defaultStorage: UserDefaultStorage)
 }
