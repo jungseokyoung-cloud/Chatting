@@ -59,9 +59,8 @@ extension FriendListViewController {
 	@objc func addFriendButtonTapped() {
 
 		let vc = AddFriendPopUpViewController()
-		self.view.alpha = 50.0
 		vc.modalPresentationStyle = .overFullScreen
-		present(vc, animated: true)
+		present(vc, animated: false)
 		
 	}
 }

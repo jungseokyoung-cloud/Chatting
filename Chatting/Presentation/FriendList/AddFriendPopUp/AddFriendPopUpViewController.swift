@@ -59,7 +59,8 @@ final class AddFriendPopUpViewController: UIViewController {
 		button.setTitle("친구 추가", for: .normal)
 		button.backgroundColor = UIColor(rgb: 0x5f84a2)
 		button.layer.cornerRadius = 10.0
-
+		button.alpha = 0.3
+		
 		return button
 	}()
 	
@@ -87,6 +88,15 @@ final class AddFriendPopUpViewController: UIViewController {
 		
 		addButton.rx.tap
 			.bind(to: viewModel.input.addButtonTapped)
+			.disposed(by: disposBag)
+		
+		viewModel.output.canTapConfirmButton
+			.drive(addButton.rx.isEnabled)
+			.disposed(by: disposBag)
+		
+		viewModel.output.canTapConfirmButton
+			.map { $0 ? 1.0 : 0.3 }
+			.drive(addButton.rx.alpha)
 			.disposed(by: disposBag)
 	}
 	
@@ -124,6 +134,6 @@ final class AddFriendPopUpViewController: UIViewController {
 
 extension AddFriendPopUpViewController {
 	@objc func closeButtonTapped() {
-		self.dismiss(animated: true)
+		self.dismiss(animated: false)
 	}
 }
