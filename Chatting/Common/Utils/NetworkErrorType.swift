@@ -4,4 +4,5 @@ enum NetworkError: Error {
 	case InValidSignIn
 	case InvalidSignUp
 	case FecthError
+	case AddFriendError
 }

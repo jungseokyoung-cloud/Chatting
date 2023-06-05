@@ -13,7 +13,7 @@ final class FriendListViewController: UIViewController {
 		return tableView
 	}()
 	
-	private lazy var addFriendButton: UIBarButtonItem = {
+	private lazy var logOutButton: UIBarButtonItem = {
 		let button = UIBarButtonItem(
 			title: "logOut",
 			style: .plain,
@@ -24,7 +24,7 @@ final class FriendListViewController: UIViewController {
 		return button
 	}()
 	
-	private lazy var logOutButton: UIBarButtonItem = {
+	private lazy var addFriendButton: UIBarButtonItem = {
 		let button = UIBarButtonItem(
 			title: "친구 추가",
 			style: .plain,

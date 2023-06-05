@@ -24,8 +24,34 @@ final class SignUpViewController: UIViewController {
 		return textField
 	}()
 	
+	private let userNameTextField: CustomTextField = {
+		let textField = CustomTextField(placeHolder: "닉네임을 입력하세요.")
+		textField.textContentType = .nickname
+		
+		return textField
+	}()
+	
+	private let passWordStackView: UIStackView = {
+		let stackView = UIStackView()
+		stackView.translatesAutoresizingMaskIntoConstraints = false
+		stackView.axis = .horizontal
+		stackView.spacing = 15
+		stackView.alignment = .fill
+		stackView.distribution = .fillEqually
+		
+		return stackView
+	}()
+	
 	private let passWordTextField: CustomTextField = {
-		let textField = CustomTextField(placeHolder: "비밀번호를 입력하세요.")
+		let textField = CustomTextField(placeHolder: "비밀번호")
+		textField.textContentType = .password
+		textField.isSecureTextEntry = true
+		
+		return textField
+	}()
+	
+	private let checkPassWordTextField: CustomTextField = {
+		let textField = CustomTextField(placeHolder: "비밀번호 확인")
 		textField.textContentType = .password
 		textField.isSecureTextEntry = true
 		
@@ -43,7 +69,6 @@ final class SignUpViewController: UIViewController {
 		
 		return button
 	}()
-	
 	
 	init(viewModel: SignUpViewModelType = SignUpViewModel()) {
 		self.viewModel = viewModel
@@ -69,9 +94,19 @@ final class SignUpViewController: UIViewController {
 			.bind(to: viewModel.input.userEmail)
 			.disposed(by: disposeBag)
 		
+		userNameTextField.rx.text
+			.orEmpty
+			.bind(to: viewModel.input.userName)
+			.disposed(by: disposeBag)
+		
 		passWordTextField.rx.text
 			.orEmpty
 			.bind(to: viewModel.input.password)
+			.disposed(by: disposeBag)
+		
+		checkPassWordTextField.rx.text
+			.orEmpty
+			.bind(to: viewModel.input.checkPassword)
 			.disposed(by: disposeBag)
 		
 		confirmButton.rx.tap
@@ -90,6 +125,18 @@ final class SignUpViewController: UIViewController {
 			)
 			.disposed(by: disposeBag)
 		
+		viewModel.output.isValidUserName
+			.drive(
+				onNext: { [weak self] result in
+					if result {
+						self?.userNameTextField.changeUIWithTextFieldMode(.normal)
+					} else {
+						self?.userNameTextField.changeUIWithTextFieldMode(.warning)
+					}
+				}
+			)
+			.disposed(by: disposeBag)
+		
 		viewModel.output.isValidPassword
 			.drive(
 				onNext: { [weak self] result in
@@ -97,6 +144,18 @@ final class SignUpViewController: UIViewController {
 						self?.passWordTextField.changeUIWithTextFieldMode(.normal)
 					} else {
 						self?.passWordTextField.changeUIWithTextFieldMode(.warning)
+					}
+				}
+			)
+			.disposed(by: disposeBag)
+		
+		viewModel.output.isValidCheckPassword
+			.drive(
+				onNext: { [weak self] result in
+					if result {
+						self?.checkPassWordTextField.changeUIWithTextFieldMode(.normal)
+					} else {
+						self?.checkPassWordTextField.changeUIWithTextFieldMode(.warning)
 					}
 				}
 			)
@@ -135,8 +194,12 @@ final class SignUpViewController: UIViewController {
 	private func setupUI() {
 		view.addSubview(stackView)
 		
+		passWordStackView.addArrangedSubview(passWordTextField)
+		passWordStackView.addArrangedSubview(checkPassWordTextField)
+		
 		stackView.addArrangedSubview(userEmailTextField)
-		stackView.addArrangedSubview(passWordTextField)
+		stackView.addArrangedSubview(userNameTextField)
+		stackView.addArrangedSubview(passWordStackView)
 		stackView.addArrangedSubview(confirmButton)
 		
 		NSLayoutConstraint.activate([
@@ -144,7 +207,8 @@ final class SignUpViewController: UIViewController {
 			stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15),
 			stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
 			userEmailTextField.heightAnchor.constraint(equalToConstant: 44),
-			passWordTextField.heightAnchor.constraint(equalToConstant: 44),
+			userNameTextField.heightAnchor.constraint(equalToConstant: 44),
+			passWordStackView.heightAnchor.constraint(equalToConstant: 44),
 			confirmButton.heightAnchor.constraint(equalToConstant: 50),
 		])
 	}
