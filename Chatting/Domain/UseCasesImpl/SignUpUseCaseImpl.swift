@@ -7,13 +7,7 @@ final class SignUpUseCaseImpl: SignUpUseCaseType {
 		self.dependency = dependency
 	}
 	
-	func trySignUp(
-		userEmail: String,
-		password: String
-	) async -> Single<Void> {
-		return await dependency.trySignUp(
-			userEmail: userEmail,
-			password: password
-		)
+	func trySignUp(user: User) async -> Single<Void> {
+		return await dependency.trySignUp(user: user)
 	}
 }

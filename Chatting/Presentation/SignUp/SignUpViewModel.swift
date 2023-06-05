@@ -4,7 +4,7 @@ import RxSwift
 
 protocol SignUpViewModelInput {
 	var userEmail: BehaviorRelay<String> { get }
-	var userName: PublishRelay<String> { get }
+	var userName: BehaviorRelay<String> { get }
 	var password: BehaviorRelay<String> { get }
 	var checkPassword: BehaviorRelay<String> { get }
 	var confirmButtonTapped: PublishRelay<Void> { get }
@@ -41,7 +41,7 @@ final class SignUpViewModel: SignUpViewModelType,
 	var output: SignUpViewModelOutput { return self }
 	
 	var userEmail = BehaviorRelay<String>(value: "")
-	var userName = PublishRelay<String>()
+	var userName = BehaviorRelay<String>(value: "")
 	var password = BehaviorRelay<String>(value: "")
 	var checkPassword = BehaviorRelay<String>(value: "")
 	var confirmButtonTapped = PublishRelay<Void>()
@@ -125,11 +125,14 @@ final class SignUpViewModel: SignUpViewModelType,
 	}
 	
 	private func signUpButtonTapped() {
+		let user = User(
+			email: userEmail.value,
+			userName: userName.value,
+			password: password.value
+		)
+		
 		Task {
-			let result: Void? = try? await dependency.trySignUp(
-				userEmail: userEmail.value,
-				password: password.value
-			).value
+			let result: Void? = try? await dependency.trySignUp(user: user).value
 			
 			if result != nil {
 				registerSuccess$.onNext(())

@@ -1,8 +1,5 @@
 import RxSwift
 
 protocol SignUpRepositoryType {
-	func trySignUp(
-		userEmail: String,
-		password: String
-	) async -> Single<Void>
+	func trySignUp(user: User) async -> Single<Void>
 }

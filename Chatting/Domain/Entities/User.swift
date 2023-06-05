@@ -2,12 +2,14 @@ import Foundation
 
 struct User: Codable {
 	let email: String
-	let password: String?
+	let userName: String
+	let password: String
 }
 
 extension User {
-	init(email: String) {
+	init(email: String, userName: String) {
 		self.email = email
-		self.password = nil
+		self.userName = userName
+		self.password = ""
 	}
 }
