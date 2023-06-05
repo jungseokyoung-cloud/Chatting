@@ -38,7 +38,6 @@ final class AddFriendPopUpViewModel:
 	var input: AddFriendPopUpViewModelInput { return self }
 	var output: AddFriendPopUpViewModelOutput { return self }
 	
-	
 	init() {
 		let canTapConfirmButton$ = friendName
 			.skip(1)
@@ -55,14 +54,12 @@ final class AddFriendPopUpViewModel:
 		
 		addButtonTapped
 			.subscribe(
-				onNext: (tryAddFriend)
+				onNext: (addFriendTapped)
 			)
 			.disposed(by: disposBag)
 	}
 	
-	private func tryAddFriend() {
-		let userName = friendName.value
-		
-		print(userName)
+	private func addFriendTapped() {
+		print("Tapped")
 	}
 }

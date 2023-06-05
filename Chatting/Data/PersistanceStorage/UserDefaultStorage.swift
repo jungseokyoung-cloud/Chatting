@@ -24,7 +24,6 @@ final class UserDefaultStorage {
 		print(data)
 		
 		let decodeData = try? JSONDecoder().decode(User.self, from: data)
-		print("decodeData: \(decodeData)")
 
 		return decodeData
 	}

@@ -10,8 +10,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		
 		var rootViewController: UIViewController = SignInViewController()
 		
-		if let userDidLogin = UserDefaultStorage().getUserInfo() {
-//			print(userDidLogin.email)
+		if UserDefaultStorage().getUserInfo() != nil {
 			rootViewController = FriendListViewController()
 		}
 		

@@ -1,7 +1,7 @@
 import RxSwift
 
 final class SignUpUseCaseImpl: SignUpUseCaseType {
-	private let dependency: SignUpRepositoryType
+	let dependency: SignUpRepositoryType
 	
 	init(dependency: SignUpRepositoryType = SignUpRepository()) {
 		self.dependency = dependency
