@@ -92,7 +92,7 @@ final class SignInViewModel: SignInViewModelType,
 		isValidUserEmail = isValidUserEmail$.asDriver(onErrorJustReturn: false)
 		isValidPassword = isValidPassword$.asDriver(onErrorJustReturn: false)
 		signInDenied = signInDenied$.asDriver(onErrorJustReturn: ())
-		signInSuccess = signInSuccess$.asDriver(onErrorJustReturn: (User(email: "", userName: "", password: "")))
+		signInSuccess = signInSuccess$.asDriver(onErrorJustReturn: (User(email: "", name: "", password: "")))
 		
 		confirmButtonTapped
 			.subscribe(onNext: (signInButtonTapped))

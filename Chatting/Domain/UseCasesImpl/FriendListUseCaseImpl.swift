@@ -11,15 +11,10 @@ final class FriendListUseCase: FriendListUseCaseType {
 	func getFriendList() async -> Single<[User]> {
 		return await dependency.fetchUser()
 	}
-	//	func tryAddFriendWithEmail(userEmail: String) async -> Single<Void> {
-	//
-	//	}
-	//	func addFriend(userEmail: String, addEmail: String) async {
-	//		let result = try? await db
-	//			.collection("FriendList")
-	//			.document(userEmail)
-	//			.setData([
-	//
-	//			])
-	//	}
+	
+	func tryAddFriendWithEmail(_ email: String) async -> Single<Void> {
+		return await dependency.addFriendWithEmail(email)
+	}
+
+
 }

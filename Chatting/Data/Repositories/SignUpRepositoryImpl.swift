@@ -3,6 +3,11 @@ import Firebase
 
 final class SignUpRepository: SignUpRepositoryType {
 	private let db = Firestore.firestore()
+	private let fireStoreRepository: FireStoreRepositoryType
+	
+	init(fireStoreRepository: FireStoreRepositoryType = FireStoreRepository()) {
+		self.fireStoreRepository = fireStoreRepository
+	}
 	
 	func trySignUp(user: User) async -> Single<Void> {
 		let result = try? await Auth.auth().createUser(
@@ -10,28 +15,14 @@ final class SignUpRepository: SignUpRepositoryType {
 			password: user.password
 		)
 		
-		return Single.create { [weak self] emitter in
+		return .create { [weak self] emitter in
 			if result != nil {
 				emitter(.success(()))
-				self?.storeUserInfoInDatabase(user: user)
+				self?.fireStoreRepository.storeUserInfoInDatabase(user: user)
 			} else {
 				emitter(.failure(NetworkError.InvalidSignUp))
 			}
 			return Disposables.create()
 		}
-	}
-}
-
-extension SignUpRepository {
-	private func storeUserInfoInDatabase(user: User) {
-		let newDocument = db
-			.collection(FireStoreConstant.Users.collectionID)
-			.document(user.email)
-		
-		newDocument.setData([
-			FireStoreConstant.Users.emailField: user.email,
-			FireStoreConstant.Users.nameField: user.userName,
-			FireStoreConstant.Users.passwordField: user.password
-		])
 	}
 }

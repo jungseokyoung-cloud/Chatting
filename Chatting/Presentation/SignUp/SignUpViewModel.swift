@@ -127,7 +127,7 @@ final class SignUpViewModel: SignUpViewModelType,
 	private func signUpButtonTapped() {
 		let user = User(
 			email: userEmail.value,
-			userName: userName.value,
+			name: userName.value,
 			password: password.value
 		)
 		

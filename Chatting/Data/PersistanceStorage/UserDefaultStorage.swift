@@ -21,8 +21,6 @@ final class UserDefaultStorage {
 		guard let data = defaults.object(forKey: UserDefaultKey.user.rawValue) as? Data else {
 			return nil
 		}
-		print(data)
-		
 		let decodeData = try? JSONDecoder().decode(User.self, from: data)
 
 		return decodeData

@@ -6,61 +6,77 @@ import Firebase
 final class FriendListRepository: FriendListRepositoryType {
 	private let db = Firestore.firestore()
 	private let defaultStorage: UserDefaultStorage
+	private let fireStoreRepository: FireStoreRepositoryType
 	
-	init(defaultStorage: UserDefaultStorage = UserDefaultStorage()) {
+	init(
+		defaultStorage: UserDefaultStorage = UserDefaultStorage(),
+		fireStoreRepository: FireStoreRepositoryType = FireStoreRepository()
+	) {
 		self.defaultStorage = defaultStorage
+		self.fireStoreRepository = fireStoreRepository
 	}
-
+	
 	func fetchUser() async -> Single<[User]> {
-		let path = db.collection(FireStoreConstant.FriendList.collectionID)
-		let snapshot = try? await path.getDocuments()
-		
-		return Single<[User]>.create { [weak self] emitter in
-			guard
-				let userEmail = self?.defaultStorage.getUserInfo()?.email,
-				let doc = snapshot?.documents.filter({ $0.documentID == userEmail }).first,
-				let data = doc[FireStoreConstant.FriendList.documentID] as? [String]
-			else {
-				emitter(.failure(NetworkError.FecthError))
+		guard
+			let email = defaultStorage.getUserInfo()?.email,
+			let _ = await fireStoreRepository.findUserInDatabaseWithEmail(email)
+		else {
+			return .create { emitter in
+				emitter(.failure(NetworkError.ServerError))
 				return Disposables.create()
 			}
-			
-//			let users = data.map({User.init(email: $0)})
-			let users = [
-				User(email: "1", userName: "1")
-			]
+		}
+		
+		let users = await fireStoreRepository.findFriendsDataWithEmail(email)
+		
+		return .create { emitter in
 			emitter(.success(users))
-
 			return Disposables.create()
 		}
 	}
 	
-	// 친구 가져오기 -> 유효성 검사 체크
+	// 중복 체크!
+	// 있는 사람인지!
+	func addFriendWithEmail(_ email: String) async -> Single<Void> {
+		guard
+			let userEmail = defaultStorage.getUserInfo()?.email,
+			let user = await fireStoreRepository.findUserInDatabaseWithEmail(userEmail)
+		else
+		{
+			return .create { emitter in
+				emitter(.failure(NetworkError.ServerError))
+				return Disposables.create()
+			}
+		}
+
+		var users = await fireStoreRepository.findFriendsDataWithEmail(userEmail)
+		let addUser = await fireStoreRepository.findUserInDatabaseWithEmail(email)
+		
+		return .create { [weak self] emitter in
+			guard let addUser = addUser else {
+				emitter(.failure(NetworkError.NotExistUser))
+				return Disposables.create()
+			}
+			
+			if addUser.email == user.email {
+				emitter(.failure(NetworkError.InvalidAccess))
+			} else if users.filter({ $0.email == addUser.email }).count != 0 {
+				emitter(.failure(NetworkError.AlreadyExist))
+			} else {
+				users.append(addUser)
+				self?.fireStoreRepository.storeFriendsDataToDatabase(userEmail, users: users)
+				emitter(.success(()))
+			}
+			return Disposables.create()
+		}
+	}
 	
-//	func tryAddFriend() async -> Single<Void> {
-//		let path = db.collection(FireStoreConstant.Collections.FriendList)
-//		let snapshot = try? await path.getDocuments()
-//
-//		return Single<Void>.create { [weak self] emitter in
-//			guard
-//				let userEmail = self?.defaultStorage.getUserInfo()?.email,
-//				let doc = snapshot?.documents.filter({ $0.documentID == userEmail }).first,
-//				let data = doc[FireStoreConstant.Documents.Friends] as? [String]
-//			else {
-//				emitter(.failure(NetworkError.FecthError))
-//				return Disposables.create()
-//			}
-//
-//			let users = data.map({User.init(email: $0)})
-//			emitter(.success(()))
-//
-//			return Disposables.create()
-//		}
-//	}
+	func updateDataInDocument(
+		_ doc: DocumentReference,
+		fieldName: String = "",
+		data: Any
+	)
+	{
+		doc.updateData([fieldName: data])
+	}
 }
-//
-//extension FriendListRepository {
-//	private func checkInvalidUser() async {
-////		guard let user = Auth.auth().
-//	}
-//}

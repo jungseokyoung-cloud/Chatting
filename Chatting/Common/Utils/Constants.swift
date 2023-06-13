@@ -10,7 +10,7 @@ public extension FireStoreConstant.Users {
 	static let documentID = "UserInfo"
 	
 	static let emailField = "email"
-	static let nameField = "userName"
+	static let nameField = "name"
 	static let passwordField = "password"
 }
 

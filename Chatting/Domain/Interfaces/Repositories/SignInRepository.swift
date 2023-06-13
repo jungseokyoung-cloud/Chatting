@@ -6,5 +6,8 @@ protocol SignInRepositoryType {
 		password: String
 	) async -> Single<User>
 	
-	init(defaultStorage: UserDefaultStorage)
+	init(
+		defaultStorage: UserDefaultStorage,
+		fireStoreRepository: FireStoreRepositoryType
+	)
 }

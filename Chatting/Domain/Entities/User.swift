@@ -2,14 +2,20 @@ import Foundation
 
 struct User: Codable {
 	let email: String
-	let userName: String
+	let name: String
 	let password: String
 }
 
 extension User {
-	init(email: String, userName: String) {
+	init(email: String, name: String) {
 		self.email = email
-		self.userName = userName
+		self.name = name
 		self.password = ""
 	}
+}
+
+extension User: Equatable {
+	public static func == (lhs: Self, rhs: Self) -> Bool {
+		return lhs.email == rhs.email
+	}	
 }

@@ -2,6 +2,11 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+protocol AddFriendPopUpListner {
+	func AddFriendPopUpCloseButtonTapped()
+	func AddFriendPopUpAddButtonTapped(email: String)
+}
+
 protocol AddFriendPopUpViewModelInput {
 	var friendName: BehaviorRelay<String> { get }
 	var addButtonTapped: PublishRelay<Void> { get }
@@ -13,12 +18,13 @@ protocol AddFriendPopUpViewModelOutput {
 
 
 protocol AddFriendPopUpViewModelType {
+	var listener: AddFriendPopUpListner { get }
 	var disposBag: DisposeBag { get }
 	
 	var input: AddFriendPopUpViewModelInput { get }
 	var output: AddFriendPopUpViewModelOutput { get }
 	
-	init()
+	init(listener: AddFriendPopUpListner)
 }
 
 final class AddFriendPopUpViewModel:
@@ -26,6 +32,7 @@ final class AddFriendPopUpViewModel:
 	AddFriendPopUpViewModelOutput,
 	AddFriendPopUpViewModelType
 {
+	var listener: AddFriendPopUpListner
 	var disposBag = DisposeBag()
 	
 	//Input
@@ -38,7 +45,9 @@ final class AddFriendPopUpViewModel:
 	var input: AddFriendPopUpViewModelInput { return self }
 	var output: AddFriendPopUpViewModelOutput { return self }
 	
-	init() {
+	init(listener: AddFriendPopUpListner) {
+		self.listener = listener
+		
 		let canTapConfirmButton$ = friendName
 			.skip(1)
 			.map {
@@ -60,6 +69,11 @@ final class AddFriendPopUpViewModel:
 	}
 	
 	private func addFriendTapped() {
-		print("Tapped")
+		let data = friendName.value
+		listener.AddFriendPopUpAddButtonTapped(email: data)
+	}
+	
+	private func closeButtonTapped() {
+		listener.AddFriendPopUpCloseButtonTapped()
 	}
 }

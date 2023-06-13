@@ -4,5 +4,5 @@ import RxSwift
 protocol FriendListUseCaseType {
 	func getFriendList() async -> Single<[User]>
 	
-//	func tryAddFriendWithEmail(userEmail: String) async -> Single<Void>
+	func tryAddFriendWithEmail(_ email: String) async -> Single<Void>
 }

@@ -78,9 +78,12 @@ final class FriendListViewController: UIViewController {
 			.drive(
 				onNext: { [weak self] _ in
 					self?.navigationController?.popToRootViewController(animated: true)
+					UserDefaultStorage().removeUserInfo()
 				}
 			)
 			.disposed(by: disposBag)
+			
+		
 	}
 	
 	private func setupUI() {
@@ -96,13 +99,24 @@ final class FriendListViewController: UIViewController {
 
 extension FriendListViewController {
 	@objc func logOutButtonTapped() {
-		UserDefaultStorage().removeUserInfo()
 		self.navigationController?.popViewController(animated: true)
+		UserDefaultStorage().removeUserInfo()
+		print(UserDefaultStorage().getUserInfo())
 	}
 	
 	@objc func addFriendButtonTapped() {
-		let vc = AddFriendPopUpViewController()
+		let vc = AddFriendPopUpViewController(viewModelListener: self)
 		vc.modalPresentationStyle = .overFullScreen
 		present(vc, animated: false)
+	}
+}
+
+extension FriendListViewController: AddFriendPopUpListner {
+	func AddFriendPopUpCloseButtonTapped() {
+		self.navigationController?.topViewController?.dismiss(animated: true)
+	}
+	
+	func AddFriendPopUpAddButtonTapped(email: String) {
+		viewModel.input.addFriendPopUpAddButtonTapped(email: email)
 	}
 }

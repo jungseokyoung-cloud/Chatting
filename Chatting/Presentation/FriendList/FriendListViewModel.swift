@@ -4,6 +4,7 @@ import RxCocoa
 
 protocol FriendListViewModelInput {
 	func viewWillAppear()
+	func addFriendPopUpAddButtonTapped(email: String)
 }
 
 protocol FriendListViewModelOutput {
@@ -55,6 +56,13 @@ final class FriendListViewModel:
 			} else {
 				fetchFriendListError$.onNext(())
 			}
+		}
+	}
+	func addFriendPopUpAddButtonTapped(email: String) {
+		Task {
+			await dependency.tryAddFriendWithEmail(email)
+				.subscribe(onSuccess: {print("succ")},
+										onFailure: {print($0)})
 		}
 	}
 }

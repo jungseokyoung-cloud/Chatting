@@ -64,14 +64,13 @@ final class AddFriendPopUpViewController: UIViewController {
 		return button
 	}()
 	
-	init(viewModel: AddFriendPopUpViewModelType = AddFriendPopUpViewModel()) {
-		self.viewModel = viewModel
+	init(viewModelListener: AddFriendPopUpListner) {
+		self.viewModel = AddFriendPopUpViewModel(listener: viewModelListener)
 		super.init(nibName: nil, bundle: nil)
 	}
-	
+
 	required init?(coder: NSCoder) {
-		self.viewModel = AddFriendPopUpViewModel()
-		super.init(coder: coder)
+		fatalError("init(coder:) has not been implemented")
 	}
 	
 	override func viewDidLoad() {
